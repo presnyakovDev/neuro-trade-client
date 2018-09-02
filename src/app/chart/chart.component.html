@@ -1,0 +1,19 @@
+<div [hidden]="!chart">
+  <canvas style="margin:70px auto 0 auto" width="800" height="400" id="canvas">{{ chart }}</canvas>
+  <div class="button-row">
+    <button mat-flat-button color="primary" (click)="setSale()">Set where sale</button>&nbsp;
+    <button mat-flat-button color="primary" (click)="setBuy()">Set where buy</button>
+  </div>
+  <div>
+    <h3>Buy:</h3>
+    <ul>
+      <li *ngFor="let price of whereBuy">{{price}}</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Sale:</h3>
+    <ul>
+      <li *ngFor="let price of whereSale">{{price}}</li>
+    </ul>
+  </div>
+</div>
