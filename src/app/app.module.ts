@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 
 //Angular material
 import {MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule} from '@angular/material';
+import { TrainingComponent } from './training/training.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridL
     ChartComponent,
     ManageToolsComponent,
     SetLabelsComponent,
-    HomeComponent
+    HomeComponent,
+    TrainingComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +35,7 @@ import {MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridL
     MatListModule,
     MatGridListModule,
     RouterModule.forRoot(
-      routes,
-      { enableTracing: true } // <-- debugging purposes only
+      routes
     )
   ],
   providers: [],

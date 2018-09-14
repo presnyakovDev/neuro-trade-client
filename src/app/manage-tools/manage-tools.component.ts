@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StockApiService } from "../stock-api.service";
 import { PredictionsService } from "../predictions.service";
+import { SetLabelsService } from "../set-labels.service";
 
 @Component({
   selector: 'app-manage-tools',
@@ -17,13 +18,15 @@ export class ManageToolsComponent implements OnInit {
     company: ''
   }
 
-  constructor( private stockApiService:StockApiService, private predictionsService:PredictionsService) { }
+  constructor( private stockApiService:StockApiService, private predictionsService:PredictionsService, private setLabelsService:SetLabelsService) { }
 
   go(){
     this.stockApiService.getStockData(this.selectedValue.company, this.selectedValue.period)
-    .subscribe((data)=>{
+    .subscribe((data:Array<any>)=>{
       this.stocks = this.stockApiService.mapResults(data)
+      this.setLabelsService.setLength(data.length)
     })
+
   }
 
   ngOnInit() {

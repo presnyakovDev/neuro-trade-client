@@ -1,6 +1,7 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Chart } from 'chart.js';
 import { PredictionsService } from "../predictions.service";
+import { SetLabelsService } from "../set-labels.service";
 
 @Component({
   selector: 'chart',
@@ -13,11 +14,8 @@ export class ChartComponent implements OnChanges {
   labels = [];
   data = [];
   chart;
-  setState: "buy" | "sale";
-  whereBuy = [];
-  whereSale = [];
 
-  constructor(private predictionsService:PredictionsService) { }
+  constructor(private predictionsService:PredictionsService, private setLabelsService:SetLabelsService) { }
 
   ngOnChanges(){
     if(this.chart){
@@ -64,31 +62,8 @@ export class ChartComponent implements OnChanges {
     let element = this.chart.getElementAtEvent(event);
     if (element.length > 0) {
         var value = this.chart.data.datasets[element[0]._datasetIndex].data[element[0]._index];
-        console.log(this)
-        this.setPredictions(value)
-    }
-  }
-
-  setSale(){
-    this.setState = "sale";
-  }
-
-  setBuy(){
-    this.setState = "buy";
-  }
-
-  setPredictions(value){
-    switch(this.setState){
-      case "sale":
-        this.whereSale.push(value)
-        console.log("sale trig")
-        break;
-      case "buy":
-        this.whereBuy.push(value)
-        console.log("buy trig")
-        break;
-      default:
-        console.log(this.whereSale, this.whereBuy, this.setState);
+        console.log(element[0]._datasetIndex, element[0]._index)
+        this.setLabelsService.addLabel(element[0]._index)
     }
   }
 }
