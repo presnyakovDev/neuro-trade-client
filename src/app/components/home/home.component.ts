@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebsocketService } from '../websocket.service'
+import { WebsocketService } from 'app/services/websocket.service'
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private websocketService:WebsocketService) { }
 
   ngOnInit() {
+    this.websocketService.run()
   }
 
   send(){

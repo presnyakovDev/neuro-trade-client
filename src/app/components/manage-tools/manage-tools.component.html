@@ -1,0 +1,15 @@
+<mat-form-field>
+  <mat-select [(value)]="stockParamsService.selectedValue.stockName" placeholder="Set company:">
+    <mat-option *ngFor="let company of stockParamsService.COMPANIES" [value]="company">{{company}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-select [(value)]="stockParamsService.selectedValue.period" placeholder="Set period:">
+    <mat-option *ngFor="let period of stockParamsService.PERIODS" [value]="period">{{period}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<div class="button-row" *ngIf="stockParamsService.selectedValue.stockName && stockParamsService.selectedValue.period">
+  <button mat-flat-button color="primary" (click)="go()">Go</button>
+</div>
+<chart [labels]="stocks.labels" [data]="stocks.data"></chart>
+<labels-list></labels-list>

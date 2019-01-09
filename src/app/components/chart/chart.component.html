@@ -1,0 +1,10 @@
+<div [hidden]="!chart">
+  <canvas style="margin:70px auto 0 auto" width="1400" height="400" id="canvas">{{ chart }}</canvas>
+  <div class="button-row">
+    <mat-radio-group >
+       <mat-radio-button (click)="setLabelsService.setSale()" class="example-margin" value="primary">Add sale</mat-radio-button>
+       <mat-radio-button (click)="setLabelsService.setBuy()" class="example-margin" value="accent">Add buy</mat-radio-button>
+    </mat-radio-group>
+    <button routerLink="/training" style="margin-top:1em;" mat-raised-button color="accent">Done</button>
+  </div>
+</div>

@@ -9,6 +9,7 @@ export class SetLabelsService {
   whereSaleIndexes = [];
   length = 0;
   results= [];
+
   constructor() { }
 
   setSale(){
@@ -21,13 +22,11 @@ export class SetLabelsService {
 
   addLabel(value){
     switch(this.setState){
-      case "sale":
-        this.whereBuyIndexes.push(value)
-        console.log("sale trig")
-        break;
       case "buy":
+        this.whereBuyIndexes.push(value)
+        break;
+      case "sale":
         this.whereSaleIndexes.push(value)
-        console.log("buy trig")
         break;
       default:
         console.log(this.whereSaleIndexes, this.whereBuyIndexes, this.setState);
@@ -35,19 +34,17 @@ export class SetLabelsService {
   }
 
   createResults(){
-    this.results = new Array(this.length).fill([0]);
-    console.log(this.results)
+    this.results = new Array(this.length).fill(0);
   }
 
   setLength(len){
     this.length = len;
     this.createResults()
-    console.log(this.results)
   }
 
   getLabels(){
     for(let value of this.whereBuyIndexes){
-      this.results[value] = [1];
+      this.results[value] = 1;
     }
     for(let value of this.whereSaleIndexes){
       this.results[value] = [-1];

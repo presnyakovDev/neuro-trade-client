@@ -5,16 +5,17 @@ import { BrowserAnimationsModule}  from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
+//Angular material
+import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule } from '@angular/material';
+
 //Components
 import { AppComponent } from './app.component';
-import { ChartComponent } from './chart/chart.component';
-import { ManageToolsComponent } from './manage-tools/manage-tools.component'
-import { SetLabelsComponent } from './set-labels/set-labels.component';
-import { HomeComponent } from './home/home.component';
-
-//Angular material
-import {MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule} from '@angular/material';
-import { TrainingComponent } from './training/training.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { ManageToolsComponent } from './components/manage-tools/manage-tools.component'
+import { SetLabelsComponent } from './components/set-labels/set-labels.component';
+import { HomeComponent } from './components/home/home.component';
+import { TrainingComponent } from './components/training/training.component';
+import { LabelsListComponent } from './components/labels-list/labels-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TrainingComponent } from './training/training.component';
     ManageToolsComponent,
     SetLabelsComponent,
     HomeComponent,
-    TrainingComponent
+    TrainingComponent,
+    LabelsListComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { TrainingComponent } from './training/training.component';
     MatButtonModule,
     MatListModule,
     MatGridListModule,
+    MatRadioModule,
     RouterModule.forRoot(
       routes
     )

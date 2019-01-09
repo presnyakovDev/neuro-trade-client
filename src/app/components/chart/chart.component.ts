@@ -1,7 +1,6 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Chart } from 'chart.js';
-import { PredictionsService } from "../predictions.service";
-import { SetLabelsService } from "../set-labels.service";
+import { SetLabelsService } from "app/services/set-labels.service";
 
 @Component({
   selector: 'chart',
@@ -10,19 +9,17 @@ import { SetLabelsService } from "../set-labels.service";
 })
 
 export class ChartComponent implements OnChanges {
-  @Input() stockPrices;
-  labels = [];
-  data = [];
+  @Input() data;
+  @Input() labels;
   chart;
 
-  constructor(private predictionsService:PredictionsService, private setLabelsService:SetLabelsService) { }
+  constructor(private setLabelsService:SetLabelsService) { }
 
   ngOnChanges(){
     if(this.chart){
       this.chart.destroy()
     }
-    if(this.stockPrices){
-      this.dataTransform(this.stockPrices)
+    if(this.data && this.labels){
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
@@ -47,15 +44,6 @@ export class ChartComponent implements OnChanges {
         }
       });
     }
-  }
-
-  dataTransform(stockPrices){
-    this.labels = [];
-    this.data = [];
-    stockPrices.forEach(item=>{
-      this.labels.push(item.date)
-      this.data.push(item.price)
-    })
   }
 
   onChartClick(event, arr){
