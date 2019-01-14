@@ -9,6 +9,5 @@ sudo mongod
 ```
 ### Node:
 ```
-cd build
-node app.js
+npm run start
 ```
