@@ -1,6 +1,13 @@
 # dataset-manage
 
-### Start:
+## Start:
+
+### Mongo:
+
+```
+sudo mongod
+```
+### Node:
 ```
 cd build
 node app.js
