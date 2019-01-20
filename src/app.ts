@@ -1,73 +1,43 @@
 import * as express from 'express';
-import * as  graphqlHTTP from 'express-graphql';
-import  { buildSchema } from 'graphql';
+import { MongoClient, ObjectId } from 'mongodb';
+import { MongooseFacade } from "./mongooseFacade";
 const app = express();
+const MONGO_URL = 'mongodb://localhost:27017';
+const mongoClient = new MongoClient(MONGO_URL, { useNewUrlParser: true });
+import * as https from 'https';
 
-// Construct a schema, using GraphQL schema language
-const schema = buildSchema(`
-  type Query {
-    getDataset(_id:String): Dataset
-    getDatasets:[Dataset]
-  }
+mongoClient.connect(function(err, client){
+  const db = client.db('neuroTradeDatasets');
+  const Datasets = db.collection("datasets");
+  const Examples = db.collection("examples");
 
-  type Dataset {
-    decription: String
-    date: String
-    _id: String
-    examples:[Example]
-  }
+  app.get('/datasets', function (req, res) {
+    Datasets.find().toArray().then((response)=>{
+      res.send(response);
+    });
+  });
+});
 
-  type Example {
-    _id: String
-    datasetId: String
-    averagePrice: Int,
-    changePercent: Int,
-    upOrDown: Int,
-    howFar:Int,
-    forWeek: Int,
-    forMonth: Int,
-    for3Month: Int,
-    for6Month: Int,
-    forYear: Int
-  }
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
 
-  input ExampleInput {
-    averagePrice: Int,
-    changePercent: Int,
-    upOrDown: Int,
-    howFar:Int,
-    forWeek: Int,
-    forMonth: Int,
-    for3Month: Int,
-    for6Month: Int,
-    forYear: Int
-  }
+// Add headers
+app.use(function (req, res, next) {
 
-  type Mutation {
-    createDataset(description:String, examples:[ExampleInput]):Dataset
-  }
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
-  type schema {
-    query: Query
-    mutation: Mutation
-  }
-`);
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-// The root provides a resolver function for each API endpoint
-const root = {
-  getDataset: () => {
-    return 'Empty!';
-  },
-  getDatasets:() => {
-    return [];
-  }
-};
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
 
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
-app.listen(4000);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+    // Pass to next layer of middleware
+    next();
+});
