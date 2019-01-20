@@ -9,7 +9,7 @@ import { WebsocketService } from 'app/services/websocket.service'
 export class AppComponent {
 
   constructor(private websocketService:WebsocketService){
-    this.websocketService.run()
+    //this.websocketService.run()
     //this.websocketService.send('test')
   }
 

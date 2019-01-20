@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WebsocketService } from 'app/services/websocket.service'
 
 @Component({
   selector: 'app-home',
@@ -9,14 +8,10 @@ import { WebsocketService } from 'app/services/websocket.service'
 export class HomeComponent implements OnInit {
   title = 'Neuro Trade';
 
-  constructor(private websocketService:WebsocketService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.websocketService.run()
-  }
-
-  send(){
-    this.websocketService.send([0,1,1,0]);
+    //this.websocketService.run()
   }
 
 }

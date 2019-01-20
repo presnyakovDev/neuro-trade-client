@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
 //Angular material
-import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule } from '@angular/material';
+import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule, MatTableModule } from '@angular/material';
 
 //Components
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { SetLabelsComponent } from './components/set-labels/set-labels.component
 import { HomeComponent } from './components/home/home.component';
 import { TrainingComponent } from './components/training/training.component';
 import { LabelsListComponent } from './components/labels-list/labels-list.component';
+import { ManageDatasetsComponent } from './components/manage-datasets/manage-datasets.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LabelsListComponent } from './components/labels-list/labels-list.compon
     SetLabelsComponent,
     HomeComponent,
     TrainingComponent,
-    LabelsListComponent
+    LabelsListComponent,
+    ManageDatasetsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { LabelsListComponent } from './components/labels-list/labels-list.compon
     MatListModule,
     MatGridListModule,
     MatRadioModule,
+    MatTableModule,
     RouterModule.forRoot(
       routes
     )
