@@ -3,3 +3,6 @@
 *{
   font-family: courier,	/* Unix+X, MacOS */ monospace;
 }
+div.mat-form-field-appearance-legacy .mat-form-field-underline{
+  height: 0;
+}

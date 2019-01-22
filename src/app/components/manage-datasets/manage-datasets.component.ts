@@ -8,10 +8,10 @@ import { DatasetManagerService } from "app/services/dataset-manager.service";
 })
 export class ManageDatasetsComponent {
   datasets = [];
-  displayedColumns: string[] = ['decription', 'date'];
+  displayedColumns: string[] = ['decription', 'date', 'update', 'delete'];
 
   constructor(datasetManagerService: DatasetManagerService) {
-    datasetManagerService.getDatasets().subscribe((res)=>{
+    datasetManagerService.getDatasets().subscribe((res:any[])=>{
       console.log(res)
       this.datasets = res;
     })

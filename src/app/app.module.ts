@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
 //Angular material
-import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule, MatTableModule } from '@angular/material';
+import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule, MatTableModule, MatInputModule } from '@angular/material';
 
 //Components
 import { AppComponent } from './app.component';
@@ -40,6 +40,7 @@ import { ManageDatasetsComponent } from './components/manage-datasets/manage-dat
     MatGridListModule,
     MatRadioModule,
     MatTableModule,
+    MatInputModule
     RouterModule.forRoot(
       routes
     )
