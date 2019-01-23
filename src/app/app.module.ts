@@ -40,7 +40,7 @@ import { ManageDatasetsComponent } from './components/manage-datasets/manage-dat
     MatGridListModule,
     MatRadioModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
     RouterModule.forRoot(
       routes
     )

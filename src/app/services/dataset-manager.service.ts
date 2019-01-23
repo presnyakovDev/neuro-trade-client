@@ -14,4 +14,8 @@ export class DatasetManagerService {
   getDatasets(){
     return this.http.get(URL + 'datasets')
   }
+
+  addDataset(){
+    return this.http.post(URL + 'dataset')
+  }
 }

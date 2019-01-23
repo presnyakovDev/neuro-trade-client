@@ -14,7 +14,13 @@ export class ManageDatasetsComponent {
     datasetManagerService.getDatasets().subscribe((res:any[])=>{
       console.log(res)
       this.datasets = res;
-    })
+    });
+  }
+
+  addDataset(description:string){
+    datasetManagerService.addDataset(description).subscribe((res)=>{
+      console.log('dataset added!')
+    });
   }
 
 
