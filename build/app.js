@@ -1,10 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongodb_1 = require("mongodb");
 const app = express();
 const MONGO_URL = 'mongodb://localhost:27017';
 const mongoClient = new mongodb_1.MongoClient(MONGO_URL, { useNewUrlParser: true });
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 mongoClient.connect(function (err, client) {
     const db = client.db('neuroTradeDatasets');
     const Datasets = db.collection("datasets");
@@ -14,9 +17,17 @@ mongoClient.connect(function (err, client) {
             res.send(response);
         });
     });
+    app.post('/dataset', function (req, res) {
+        let description = req.body.description;
+        let date = req.body.date;
+        Datasets.insertOne({ description: description, date: date, examples: [] })
+            .then((res) => {
+            res.end("Dataset added!");
+        });
+    });
 });
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('Example app listening on http://localhost:3000/');
 });
 // Add headers
 app.use(function (req, res, next) {

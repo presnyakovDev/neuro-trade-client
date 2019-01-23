@@ -3,7 +3,7 @@
         "target": "es6",
         "module": "commonjs",
         "sourceMap": true,
-        "outDir": "build", //проект билдится из папки /src в папку /build/src
+        "outDir": "build",
         "rootDir": "src"
     },
     "include": [
