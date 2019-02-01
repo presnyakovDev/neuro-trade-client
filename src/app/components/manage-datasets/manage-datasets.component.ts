@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatasetManagerService } from "app/services/dataset-manager.service";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATAs} from '@angular/material';
+
 
 @Component({
   selector: 'app-manage-datasets',
@@ -15,6 +17,13 @@ export class ManageDatasetsComponent {
       console.log(res)
       this.datasets = res;
     });
+  }
+
+  openDialog(public dialog: MatDialog){
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    }
   }
 
   addDataset(description:string){

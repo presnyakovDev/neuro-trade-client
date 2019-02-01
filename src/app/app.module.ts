@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
 //Angular material
-import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule, MatTableModule, MatInputModule } from '@angular/material';
+import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule, MatTableModule, MatInputModule, MatDialogModule } from '@angular/material';
 
 //Components
 import { AppComponent } from './app.component';
@@ -17,6 +17,9 @@ import { HomeComponent } from './components/home/home.component';
 import { TrainingComponent } from './components/training/training.component';
 import { LabelsListComponent } from './components/labels-list/labels-list.component';
 import { ManageDatasetsComponent } from './components/manage-datasets/manage-datasets.component';
+import { AddDatasetComponent } from './components/manage-datasets/dialogs/add-dataset/add-dataset.component';
+import { RemoveDatasetComponent } from './components/manage-datasets/dialogs/remove-dataset/remove-dataset.component';
+import { UpdateDatasetComponent } from './components/manage-datasets/dialogs/update-dataset/update-dataset.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { ManageDatasetsComponent } from './components/manage-datasets/manage-dat
     HomeComponent,
     TrainingComponent,
     LabelsListComponent,
-    ManageDatasetsComponent
+    ManageDatasetsComponent,
+    AddDatasetComponent,
+    RemoveDatasetComponent,
+    UpdateDatasetComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +47,7 @@ import { ManageDatasetsComponent } from './components/manage-datasets/manage-dat
     MatRadioModule,
     MatTableModule,
     MatInputModule,
+    MatDialogModule,
     RouterModule.forRoot(
       routes
     )
