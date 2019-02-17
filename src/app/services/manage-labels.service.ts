@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class SetLabelsService {
+export class ManageLabelsService {
   setState: "buy" | "sale";
   whereBuyIndexes = [];
   whereSaleIndexes = [];

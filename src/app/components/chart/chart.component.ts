@@ -1,6 +1,6 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Chart } from 'chart.js';
-import { SetLabelsService } from "app/services/set-labels.service";
+import { ManageLabelsService } from "app/services/manage-labels.service";
 
 @Component({
   selector: 'chart',
@@ -13,7 +13,7 @@ export class ChartComponent implements OnChanges {
   @Input() labels;
   chart;
 
-  constructor(private setLabelsService:SetLabelsService) { }
+  constructor(private manageLabelsService:ManageLabelsService) { }
 
   ngOnChanges(){
     if(this.chart){
@@ -51,7 +51,7 @@ export class ChartComponent implements OnChanges {
     if (element.length > 0) {
         var value = this.chart.data.datasets[element[0]._datasetIndex].data[element[0]._index];
         console.log(element[0]._datasetIndex, element[0]._index)
-        this.setLabelsService.addLabel(element[0]._index)
+        this.manageLabelsService.addLabel(element[0]._index)
     }
   }
 }

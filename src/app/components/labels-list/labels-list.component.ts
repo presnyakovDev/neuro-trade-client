@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SetLabelsService } from "app/services/set-labels.service";
+import { ManageLabelsService } from "app/services/manage-labels.service";
 
 @Component({
   selector: 'labels-list',
@@ -8,7 +8,7 @@ import { SetLabelsService } from "app/services/set-labels.service";
 })
 export class LabelsListComponent implements OnInit {
 
-  constructor(private setLabelsService:SetLabelsService) { }
+  constructor(private manageLabelsService:ManageLabelsService) { }
 
   ngOnInit() {
   }

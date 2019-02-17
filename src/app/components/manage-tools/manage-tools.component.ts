@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StockApiService } from "app/services/stock-api.service";
 import { PredictionsService } from "app/services/predictions.service";
-import { SetLabelsService } from "app/services/set-labels.service";
+import { ManageLabelsService } from "app/services/manage-labels.service";
 import { CommonToolsService } from "app/services/common-tools.service";
 import { StockParamsService } from "app/services/stock-params.service";
 
@@ -17,7 +17,7 @@ export class ManageToolsComponent implements OnInit {
   constructor(
     private stockApiService: StockApiService,
     private predictionsService: PredictionsService,
-    private setLabelsService: SetLabelsService,
+    private manageLabelsService: ManageLabelsService,
     private commonToolsService: CommonToolsService,
     private stockParamsService: StockParamsService
     ) { }
@@ -26,7 +26,7 @@ export class ManageToolsComponent implements OnInit {
     this.stockApiService.getStockData(this.stockParamsService.selectedValue.stockName, this.stockParamsService.selectedValue.period)
     .subscribe((data:Array<any>)=>{
       this.commonToolsService.dataTransformForStockPrice(this.stocks, this.stockApiService.mapResults(data))
-      this.setLabelsService.setLength(data.length)
+      this.manageLabelsService.setLength(data.length)
     })
 
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const URL = "http://localhost:3000/";
 
@@ -16,6 +16,15 @@ export class DatasetManagerService {
   }
 
   addDataset(description:string){
-    return this.http.post(URL + 'dataset')
+    let body = {description:description};
+    console.log('go')
+    return this.http.post(URL + 'dataset', body)
+  }
+
+  deleteDataset(id:string){
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: {id: id}
+    };
+    return this.http.delete(URL + 'dataset', httpOptions)
   }
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule}  from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { routes } from './routes';
 
 //Angular material
@@ -17,9 +18,9 @@ import { HomeComponent } from './components/home/home.component';
 import { TrainingComponent } from './components/training/training.component';
 import { LabelsListComponent } from './components/labels-list/labels-list.component';
 import { ManageDatasetsComponent } from './components/manage-datasets/manage-datasets.component';
-import { AddDatasetComponent } from './components/manage-datasets/dialogs/add-dataset/add-dataset.component';
 import { RemoveDatasetComponent } from './components/manage-datasets/dialogs/remove-dataset/remove-dataset.component';
 import { UpdateDatasetComponent } from './components/manage-datasets/dialogs/update-dataset/update-dataset.component';
+import { CreateDatasetComponent } from './components/create-dataset/create-dataset.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { UpdateDatasetComponent } from './components/manage-datasets/dialogs/upd
     TrainingComponent,
     LabelsListComponent,
     ManageDatasetsComponent,
-    AddDatasetComponent,
+    CreateDatasetComponent,
+    RemoveDatasetComponent,
+    UpdateDatasetComponent
+  ],
+  entryComponents:[
     RemoveDatasetComponent,
     UpdateDatasetComponent
   ],
@@ -39,6 +44,8 @@ import { UpdateDatasetComponent } from './components/manage-datasets/dialogs/upd
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatSelectModule,
     MatTabsModule,
     MatButtonModule,
