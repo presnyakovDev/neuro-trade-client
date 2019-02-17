@@ -12,17 +12,26 @@ mongoClient.connect(function (err, client) {
     const db = client.db('neuroTradeDatasets');
     const Datasets = db.collection("datasets");
     const Examples = db.collection("examples");
+    const Lables = db.collection("lables");
     app.get('/datasets', function (req, res) {
         Datasets.find().toArray().then((response) => {
             res.send(response);
         });
     });
     app.post('/dataset', function (req, res) {
+        console.log('begin');
         let description = req.body.description;
-        let date = req.body.date;
-        Datasets.insertOne({ description: description, date: date, examples: [] })
-            .then((res) => {
-            res.end("Dataset added!");
+        let date = Date.now();
+        Datasets.insertOne({ description: description, date: date, examples: [], id: mongodb_1.ObjectId() })
+            .then((response) => {
+            res.send("Dataset added!", response);
+        });
+    });
+    app.delete('/dataset', function (req, res) {
+        let id = req.body.id;
+        Datasets.deleteOne({ _id: mongodb_1.ObjectId(id) })
+            .then((response) => {
+            res.send("Dataset deleted!", response);
         });
     });
 });
