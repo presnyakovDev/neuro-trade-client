@@ -17,17 +17,16 @@ mongoClient.connect(function(err, client){
 
   app.get('/datasets', function (req, res) {
     Datasets.find().toArray().then((response)=>{
-      res.send(response);
+      res.status(200).send(response);
     });
   });
 
   app.post('/dataset', function (req, res) {
-    console.log('begin');
     let description = req.body.description;
     let date = Date.now();
     Datasets.insertOne({description: description, date: date, examples:[], id:ObjectId()})
       .then((response)=>{
-        res.send("Dataset added!", response);
+        res.status(200).send({...response, status:"Dataset added!"});
       })
   });
 
@@ -35,7 +34,7 @@ mongoClient.connect(function(err, client){
     let id = req.body.id;
     Datasets.deleteOne({_id:ObjectId(id)})
       .then((response)=>{
-        res.send("Dataset deleted!", response);
+        res.status(200).send({...response, status:"Dataset removed!"});
       })
   });
 

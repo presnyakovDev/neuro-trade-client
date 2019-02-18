@@ -15,7 +15,7 @@ mongoClient.connect(function (err, client) {
     const Lables = db.collection("lables");
     app.get('/datasets', function (req, res) {
         Datasets.find().toArray().then((response) => {
-            res.send(response);
+            res.status(200).send(response);
         });
     });
     app.post('/dataset', function (req, res) {
@@ -24,14 +24,14 @@ mongoClient.connect(function (err, client) {
         let date = Date.now();
         Datasets.insertOne({ description: description, date: date, examples: [], id: mongodb_1.ObjectId() })
             .then((response) => {
-            res.send("Dataset added!", response);
+            res.status(200).send(Object.assign({}, response, { status: "Dataset added!" }));
         });
     });
     app.delete('/dataset', function (req, res) {
         let id = req.body.id;
         Datasets.deleteOne({ _id: mongodb_1.ObjectId(id) })
             .then((response) => {
-            res.send("Dataset deleted!", response);
+            res.status(200).send(Object.assign({}, response, { status: "dataset removed!" }));
         });
     });
 });
