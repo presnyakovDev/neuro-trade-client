@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { routes } from './routes';
 
 //Angular material
-import { MatSelectModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule, MatTableModule, MatInputModule, MatDialogModule } from '@angular/material';
+import { MatSelectModule, MatSnackBarModule, MatButtonModule, MatTabsModule, MatListModule, MatGridListModule, MatRadioModule, MatTableModule, MatInputModule, MatDialogModule } from '@angular/material';
 
 //Components
 import { AppComponent } from './app.component';
@@ -55,6 +55,7 @@ import { CreateDatasetComponent } from './components/create-dataset/create-datas
     MatTableModule,
     MatInputModule,
     MatDialogModule,
+    MatSnackBarModule,
     RouterModule.forRoot(
       routes
     )

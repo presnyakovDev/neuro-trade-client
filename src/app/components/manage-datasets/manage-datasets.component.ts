@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from "app/services/notification.service";
 import { DatasetManagerService } from "app/services/dataset-manager.service";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
 
 @Component({
   selector: 'app-manage-datasets',
@@ -10,9 +10,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ManageDatasetsComponent {
   datasets = [];
-  displayedColumns: string[] = ['decription', 'date', 'update', 'delete'];
+  displayedColumns: string[] = ['decription', 'date', 'add examples', 'update', 'delete'];
 
-  constructor(public datasetManagerService: DatasetManagerService, public dialog:MatDialog) {
+  constructor(public datasetManagerService: DatasetManagerService, public notificationService:NotificationService, public dialog:MatDialog) {
     datasetManagerService.getDatasets().subscribe((res:any[])=>{
       this.datasets = res;
     });
@@ -27,6 +27,7 @@ export class ManageDatasetsComponent {
   deleteDataset(id){
     this.datasetManagerService.deleteDataset(id)
       .subscribe((res)=>{
+        this.notificationService.sendNotification('dataset deleted!');
         console.log('dataset deleted!', res)
         this.syncDatasets()
       });
