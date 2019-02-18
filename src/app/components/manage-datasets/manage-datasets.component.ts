@@ -14,7 +14,6 @@ export class ManageDatasetsComponent {
 
   constructor(public datasetManagerService: DatasetManagerService, public dialog:MatDialog) {
     datasetManagerService.getDatasets().subscribe((res:any[])=>{
-      console.log(res)
       this.datasets = res;
     });
   }
@@ -25,18 +24,18 @@ export class ManageDatasetsComponent {
     });
   }
 
-  addDataset(description:string){
-    /*datasetManagerService.addDataset(description).subscribe((res)=>{
-      console.log('dataset added!')
-    });*/
-  }
-
   deleteDataset(id){
     this.datasetManagerService.deleteDataset(id)
       .subscribe((res)=>{
         console.log('dataset deleted!', res)
+        this.syncDatasets()
       });
   }
 
+  syncDatasets(){
+    this.datasetManagerService.getDatasets().subscribe((res:any[])=>{
+      this.datasets = res;
+    });
+  }
 
 }
