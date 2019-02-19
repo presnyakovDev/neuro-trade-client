@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ManageLabelsService } from "app/services/manage-labels.service";
-import { DatasetManagerService } from "app/services/dataset-manager.service";
+import { DataManagerService } from "app/services/data-manager.service";
 import { NotificationService } from "app/services/notification.service";
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class CreateDatasetComponent {
   constructor(
     private manageLabelsService:ManageLabelsService,
-    private datasetManagerService: DatasetManagerService,
+    private dataManagerService: DataManagerService,
     public notificationService:NotificationService,
     private router: Router
   ){}
@@ -25,7 +25,7 @@ export class CreateDatasetComponent {
 
   onSubmit() {
     console.log('added');
-    this.datasetManagerService.addDataset(this.datasetForm.value.description)
+    this.dataManagerService.addDataset(this.datasetForm.value.description)
       .subscribe(dataset => {
         this.notificationService.sendNotification('dataset created!');
         this.router.navigate(['/manage-datasets'])

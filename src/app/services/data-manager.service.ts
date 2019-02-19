@@ -7,7 +7,7 @@ const URL = "http://localhost:3000/";
   providedIn: 'root'
 })
 
-export class DatasetManagerService {
+export class DataManagerService {
 
   constructor(private http: HttpClient) {}
 
@@ -26,5 +26,9 @@ export class DatasetManagerService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: {id: id}
     };
     return this.http.delete(URL + 'dataset', httpOptions)
+  }
+
+  getExamples(){
+    return this.http.get(URL + 'examples')
   }
 }

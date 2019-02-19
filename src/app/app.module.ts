@@ -21,6 +21,7 @@ import { ManageDatasetsComponent } from './components/manage-datasets/manage-dat
 import { RemoveDatasetComponent } from './components/manage-datasets/dialogs/remove-dataset/remove-dataset.component';
 import { UpdateDatasetComponent } from './components/manage-datasets/dialogs/update-dataset/update-dataset.component';
 import { CreateDatasetComponent } from './components/create-dataset/create-dataset.component';
+import { ManageExamplesComponent } from './components/manage-examples/manage-examples.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CreateDatasetComponent } from './components/create-dataset/create-datas
     ManageDatasetsComponent,
     CreateDatasetComponent,
     RemoveDatasetComponent,
-    UpdateDatasetComponent
+    UpdateDatasetComponent,
+    ManageExamplesComponent
   ],
   entryComponents:[
     RemoveDatasetComponent,
