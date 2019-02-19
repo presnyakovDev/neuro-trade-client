@@ -24,7 +24,7 @@ mongoClient.connect(function(err, client){
   app.post('/dataset', function (req, res) {
     let description = req.body.description;
     let date = Date.now();
-    Datasets.insertOne({description: description, date: date, examples:[], id:ObjectId()})
+    Datasets.insertOne({description: description, date: date})
       .then((response)=>{
         res.status(200).send({...response, status:"Dataset added!"});
       })
@@ -37,6 +37,26 @@ mongoClient.connect(function(err, client){
         res.status(200).send({...response, status:"Dataset removed!"});
       })
   });
+
+  app.get('/examples', function(req, res){
+    let datasetId = req.body.datasetId;
+    Examples.find({datasetId:datasetId}).toArray().then((response)=>{
+      res.status(200).send(response);
+    });
+  });
+
+  app.post('/example', function(req, res){
+    Examples.insertOne()
+  });
+
+  app.delete('/example', function(req, res){
+    let id = req.body.id;
+    Examples.deleteOne({_id:ObjectId(id)})
+      .then((response)=>{
+        res.status(200).send({...response, status:"Examples removed!"});
+      });
+  });
+
 
 });
 
