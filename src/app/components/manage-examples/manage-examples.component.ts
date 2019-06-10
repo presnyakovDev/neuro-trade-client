@@ -10,13 +10,14 @@ import { DataManagerService } from "app/services/data-manager.service";
 export class ManageExamplesComponent implements OnInit {
   examples = [];
   displayedColumns: string[] = [];
+  id:any;
 
   constructor(private route: ActivatedRoute, public dataManagerService: DataManagerService) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    this.dataManagerService.getExamples().subscribe((res:any[])=>{
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    this.dataManagerService.getExamples(this.id).subscribe((res:any[])=>{
       this.examples = res;
       console.log(res);
     });

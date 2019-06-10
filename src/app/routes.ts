@@ -12,6 +12,6 @@ export const routes: Routes = [
   { path: 'manage-datasets', component: ManageDatasetsComponent },
   { path: 'manage-examples/:id', component: ManageExamplesComponent },
   { path: 'create-dataset', component: CreateDatasetComponent },
-  { path: 'set-datasets', component: SetLabelsComponent },
+  { path: 'set-labels/:id', component: SetLabelsComponent },
   { path: 'training', component: TrainingComponent }
 ]

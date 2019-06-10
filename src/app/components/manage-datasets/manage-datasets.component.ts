@@ -12,7 +12,11 @@ export class ManageDatasetsComponent {
   datasets = [];
   displayedColumns: string[] = ['decription', 'date', 'show examples', 'update', 'delete'];
 
-  constructor(public dataManagerService: DataManagerService, public notificationService:NotificationService, public dialog:MatDialog) {
+  constructor(
+    public dataManagerService: DataManagerService,
+    public notificationService:NotificationService,
+    public dialog:MatDialog)
+  {
     dataManagerService.getDatasets().subscribe((res:any[])=>{
       this.datasets = res;
       console.log(res);

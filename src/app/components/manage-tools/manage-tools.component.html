@@ -9,7 +9,10 @@
   </mat-select>
 </mat-form-field>
 <div class="button-row" *ngIf="stockParamsService.selectedValue.stockName && stockParamsService.selectedValue.period">
-  <button mat-flat-button color="primary" (click)="go()">Go</button>
+  <button mat-flat-button color="primary" (click)="getStocks()">Go</button>
 </div>
 <chart [labels]="stocks.labels" [data]="stocks.data"></chart>
 <labels-list></labels-list>
+<div class="button-row" *ngIf="manageLabelsService.whereBuyIndexes.length || manageLabelsService.whereSaleIndexes.length">
+  <button mat-flat-button color="primary" (click)="saveExamples()">Save Examples</button>
+</div>

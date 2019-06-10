@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+
+ import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,11 @@ export class ManageLabelsService {
   }
 
   createResults(){
-    this.results = new Array(this.length).fill(0);
+    this.results = this.autofill()
+  }
+
+  autofill():number[]{
+    return new Array(this.length).fill(0.5);
   }
 
   setLength(len){
@@ -43,11 +48,12 @@ export class ManageLabelsService {
   }
 
   getLabels(){
+    console.log(this.whereBuyIndexes, this.whereSaleIndexes)
     for(let value of this.whereBuyIndexes){
       this.results[value] = 1;
     }
     for(let value of this.whereSaleIndexes){
-      this.results[value] = [-1];
+      this.results[value] = 0;
     }
     return this.results
   }

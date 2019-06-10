@@ -22,6 +22,7 @@ import { RemoveDatasetComponent } from './components/manage-datasets/dialogs/rem
 import { UpdateDatasetComponent } from './components/manage-datasets/dialogs/update-dataset/update-dataset.component';
 import { CreateDatasetComponent } from './components/create-dataset/create-dataset.component';
 import { ManageExamplesComponent } from './components/manage-examples/manage-examples.component';
+import { AutoTableComponent } from './components/auto-table/auto-table.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ManageExamplesComponent } from './components/manage-examples/manage-exa
     CreateDatasetComponent,
     RemoveDatasetComponent,
     UpdateDatasetComponent,
-    ManageExamplesComponent
+    ManageExamplesComponent,
+    AutoTableComponent
   ],
   entryComponents:[
     RemoveDatasetComponent,

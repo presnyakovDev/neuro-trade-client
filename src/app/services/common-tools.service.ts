@@ -5,13 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class CommonToolsService {
 
-  dataTransformForStockPrice(object, stockPrices:stockPrice[]){
-    object.labels = [];
-    object.data = [];
+  dataTransformForStockPrice(stockPrices:stockPrice[]){
+    let result = {labels:[], data:[]};
+    console.log(result)
     stockPrices.forEach(item=>{
-      object.labels.push(item.date)
-      object.data.push(item.price)
+      result.labels.push(item.date)
+      result.data.push(item.price)
     })
+    return result;
   }
 
   constructor() { }

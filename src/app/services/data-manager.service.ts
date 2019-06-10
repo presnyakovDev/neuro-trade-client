@@ -17,7 +17,6 @@ export class DataManagerService {
 
   addDataset(description:string){
     let body = {description:description};
-    console.log('go')
     return this.http.post(URL + 'dataset', body)
   }
 
@@ -28,7 +27,13 @@ export class DataManagerService {
     return this.http.delete(URL + 'dataset', httpOptions)
   }
 
-  getExamples(){
-    return this.http.get(URL + 'examples')
+  getExamples(datasetId:string){
+    return this.http.get(URL + 'examples/' + datasetId)
   }
+
+  addExamples(examples:any[], id: string){
+    let body = {data: examples, datasetId: id};
+    return this.http.post(URL + 'examples', body)
+  }
+
 }

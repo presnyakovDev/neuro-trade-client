@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class StockParamsService {
 
   PERIODS = ['1d', '1m', '3m', '6m', '1y'];
-  COMPANIES = ['BABA', 'GOOGL', 'FB', 'TSLA'];
+  COMPANIES = ['BABA', 'GOOGL', 'FB', 'TSLA', 'NFLX'];
   selectedValue = {
     period: '',
     stockName: ''
