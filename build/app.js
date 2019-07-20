@@ -13,6 +13,7 @@ mongoClient.connect(function (err, client) {
     const Datasets = db.collection("datasets");
     const Examples = db.collection("examples");
     const Lables = db.collection("lables");
+    const RawData = db.collection("rawdata");
     app.get('/datasets', function (req, res) {
         Datasets.find().toArray().then((response) => {
             res.status(200).send(response);
@@ -30,17 +31,29 @@ mongoClient.connect(function (err, client) {
         let id = req.body.id;
         Datasets.deleteOne({ _id: mongodb_1.ObjectId(id) })
             .then((response) => {
-            res.status(200).send(Object.assign({}, response, { status: "Dataset removed!" }));
+            Examples.deleteMany({ datasetId: id })
+                .then((examlesResponse) => {
+                res.status(200).send(Object.assign({}, examlesResponse, { status: "Dataset removed!" }));
+            });
         });
     });
-    app.get('/examples', function (req, res) {
-        let datasetId = req.body.datasetId;
+    app.get('/examples/:datasetId', function (req, res) {
+        let datasetId = req.params.datasetId;
         Examples.find({ datasetId: datasetId }).toArray().then((response) => {
             res.status(200).send(response);
         });
     });
-    app.post('/example', function (req, res) {
-        Examples.insertOne();
+    app.post('/examples', function (req, res) {
+        let datasetId = req.body.datasetId;
+        let data = req.body.data;
+        let allResponse = [];
+        data.forEach((value) => {
+            Examples.insertOne({ datasetId: datasetId, data: value })
+                .then((response) => {
+                allResponse.push(response);
+            });
+        });
+        res.status(200).send(Object.assign({}, allResponse, { status: "Example added!" }));
     });
     app.delete('/example', function (req, res) {
         let id = req.body.id;
