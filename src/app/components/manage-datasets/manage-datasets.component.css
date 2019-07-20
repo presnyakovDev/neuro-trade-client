@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-underline {
+  height: 0;
+}
+
+button {
+  margin: 16px 8px;
+}

@@ -1,0 +1,14 @@
+<div *ngIf="manageLabelsService.whereBuyIndexes.length || manageLabelsService.whereSaleIndexes.length" class="labels-list">
+  <div>
+    <h3>Buy:</h3>
+    <ul>
+      <li *ngFor="let price of manageLabelsService.whereBuyIndexes">{{price}}</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Sale:</h3>
+    <ul>
+      <li *ngFor="let price of manageLabelsService.whereSaleIndexes">{{price}}</li>
+    </ul>
+  </div>
+</div>
