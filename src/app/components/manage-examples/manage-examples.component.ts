@@ -18,7 +18,7 @@ export class ManageExamplesComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
     this.dataManagerService.getExamples(this.id).subscribe((res:any[])=>{
-      this.examples = res;
+      this.examples = res.map(element =>  element.data);
       console.log(res);
     });
   }

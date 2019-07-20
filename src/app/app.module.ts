@@ -23,6 +23,8 @@ import { UpdateDatasetComponent } from './components/manage-datasets/dialogs/upd
 import { CreateDatasetComponent } from './components/create-dataset/create-dataset.component';
 import { ManageExamplesComponent } from './components/manage-examples/manage-examples.component';
 import { AutoTableComponent } from './components/auto-table/auto-table.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { SetDatasetStepperComponent } from './components/set-dataset-stepper/set-dataset-stepper.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +40,14 @@ import { AutoTableComponent } from './components/auto-table/auto-table.component
     RemoveDatasetComponent,
     UpdateDatasetComponent,
     ManageExamplesComponent,
-    AutoTableComponent
+    AutoTableComponent,
+    ConfirmDialogComponent,
+    SetDatasetStepperComponent
   ],
   entryComponents:[
     RemoveDatasetComponent,
-    UpdateDatasetComponent
+    UpdateDatasetComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

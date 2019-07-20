@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input, OnChanges  } from '@angular/core';
 
 @Component({
   selector: 'auto-table',
@@ -7,8 +7,21 @@ import { Component, OnInit, Input  } from '@angular/core';
 })
 export class AutoTableComponent implements OnInit {
   @Input() data;
+  columnsNames : string[];
   constructor() { }
 
   ngOnInit() {
   }
+
+  ngOnChanges(){
+    if(this.data.length){
+      console.log(this.data)
+      this.columnsNames = this.getColumnNames(this.data)
+    }
+  }
+
+  getColumnNames(data:any[]){
+    return Object.keys(data[0])
+  }
+
 }

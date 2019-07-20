@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from "app/services/notification.service";
 import { DataManagerService } from "app/services/data-manager.service";
+import { ConfirmDialogService } from "app/services/confirm-dialog.service";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -15,11 +16,12 @@ export class ManageDatasetsComponent {
   constructor(
     public dataManagerService: DataManagerService,
     public notificationService:NotificationService,
+    public confirmDialogService:ConfirmDialogService,
     public dialog:MatDialog)
   {
-    dataManagerService.getDatasets().subscribe((res:any[])=>{
-      this.datasets = res;
-      console.log(res);
+    dataManagerService.getDatasets().subscribe((result:any[])=>{
+      this.datasets = result;
+      console.log(result);
     });
   }
 
@@ -29,18 +31,23 @@ export class ManageDatasetsComponent {
     });
   }
 
-  deleteDataset(id){
-    this.dataManagerService.deleteDataset(id)
-      .subscribe((res)=>{
-        this.notificationService.sendNotification('dataset deleted!');
-        console.log('dataset deleted!', res)
-        this.syncDatasets()
-      });
+  deleteDataset(name, id){
+    this.confirmDialogService.openDialogToConfirmDelete(name)
+      .subscribe((result)=> {
+        if(result){
+          this.dataManagerService.deleteDataset(id)
+            .subscribe((result)=>{
+              this.notificationService.sendNotification('dataset deleted!');
+              console.log('dataset deleted!', result)
+              this.syncDatasets()
+            });
+        }
+      })
   }
 
   syncDatasets(){
-    this.dataManagerService.getDatasets().subscribe((res:any[])=>{
-      this.datasets = res;
+    this.dataManagerService.getDatasets().subscribe((result:any[])=>{
+      this.datasets = result;
     });
   }
 

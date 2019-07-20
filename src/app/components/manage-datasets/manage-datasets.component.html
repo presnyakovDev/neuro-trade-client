@@ -23,7 +23,7 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef>Delete</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-stroked-button color="warn" (click)="deleteDataset(element._id)">Delete</button>
+        <button mat-stroked-button color="warn" (click)="deleteDataset(element.description, element._id)">Delete</button>
       </td>
     </ng-container>
 
